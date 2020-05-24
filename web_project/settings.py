@@ -25,7 +25,7 @@ SECRET_KEY = 'od*(s3!p^1he%mp39i7_dw1u-h&)36*b7wlvxkut4r$1!0&!u*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'django-demo-jordisan.herokuapp.com']
 
 
 # Application definition
