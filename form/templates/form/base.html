@@ -1,0 +1,29 @@
+{% load static %}
+{% load compress %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" />
+        {% compress css %}
+            <!-- global styles for all applications -->
+            <link type="text/x-scss" href="{% static 'global.scss' %}" rel="stylesheet" media="screen" />
+            <!-- styles for FORM application -->
+            <link type="text/x-scss" href="{% static 'form/form.scss' %}" rel="stylesheet" media="screen" />
+        {% endcompress %}
+
+        <title>
+            {% block title %}
+            {{ page_title|default:"Untitled Page" }}
+            {% endblock title %}
+        </title>
+    </head>
+
+    <body>
+        <h1>{{ page_title }}</h1>
+        {% block content %}
+        <p>Placeholder text in base template. Replace with page content.</p>
+        {% endblock content %}
+    </body>
+</html>
