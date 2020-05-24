@@ -123,7 +123,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '_static'),
+    os.path.join(BASE_DIR, 'assets'),
     os.path.join(BASE_DIR, 'form/static'),
 ]
 
