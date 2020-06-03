@@ -125,7 +125,7 @@ STATIC_ROOT = 'static'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'assets'),
-    os.path.join(BASE_DIR, 'contactForm/static'),
+    os.path.join(BASE_DIR, 'contactForm/assets'),
 ]
 
 STATICFILES_FINDERS = (
