@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from .forms import ContactForm
+
 def home(request):
-    return render(request, 'contactForm/page1.html', {
-        'page_title': 'Page 1',
-        'page_content': 'Hello, Django!',
+    return render(request, 'contactForm/contact1.html', {
+        'page_title': 'Contact form (1/2)',
+        'form': ContactForm(),
     })
