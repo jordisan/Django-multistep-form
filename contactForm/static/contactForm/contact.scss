@@ -1,0 +1,21 @@
+// styles only for contact form
+
+html {
+    background-color: #999;
+    padding: 20px;
+}
+body {
+    background-color: #fff;
+    padding: 20px;
+}
+
+form {
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .form--actions {
+        margin-top: 20px;
+    }
+}
