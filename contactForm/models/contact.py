@@ -1,5 +1,5 @@
 from django.db import models
-from models.base import Base
+from general.models.base import Base
 
 class Contact(Base):
     """ Contact from customer """
