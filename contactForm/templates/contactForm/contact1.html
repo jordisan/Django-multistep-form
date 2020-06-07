@@ -1,11 +1,16 @@
-{% extends 'contactForm/base.html' %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link type="text/x-scss" href="{% static 'contactForm/contact.scss' %}" rel="stylesheet" media="screen" />
+{% endblock styles %}
 
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <div class="form--actions">
-            <input type="submit" value="Submit">
-        </div>
-    </form>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <div class="form--actions">
+        <input type="submit" value="Submit">
+    </div>
+</form>
 {% endblock content %}
