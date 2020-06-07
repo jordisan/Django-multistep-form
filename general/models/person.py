@@ -1,5 +1,5 @@
 from django.db import models
-from general.models.base import Base
+from .base import Base
 
 class Person(Base):
     """ Any real person """

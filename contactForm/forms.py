@@ -1,8 +1,8 @@
 from django import forms 
-from .models import customer 
+from general.models.customer import Customer 
   
 
 class ContactForm(forms.ModelForm): 
     class Meta: 
-        model = customer.Customer 
+        model = Customer 
         fields = "__all__"
