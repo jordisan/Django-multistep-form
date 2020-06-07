@@ -1,7 +1,7 @@
 from django.db import models
+from general.models.base import Base
 
-
-class Person(models.Model):
+class Person(Base):
     """ Any real person """
 
     first_name = models.CharField(max_length=30)

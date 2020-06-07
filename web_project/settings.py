@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'phonenumber_field',
     'compressor',
+    'general',
     'contactForm',
 ]
 
@@ -125,7 +126,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'general/assets'),
     os.path.join(BASE_DIR, 'contactForm/assets'),
 ]
 

@@ -1,0 +1,1 @@
+""" Global resources for different projects """
