@@ -6,4 +6,4 @@ class Customer(Person):
     """ Customer (existing or future) """
 
     email = models.EmailField()
-    phone_number = PhoneNumberField()
+    phone_number = models.CharField(max_length=20) # PhoneNumberField()

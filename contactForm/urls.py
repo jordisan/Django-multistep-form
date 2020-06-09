@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.urls import path
-from contactForm.views.contactMessage import ContactMessage
+from contactForm.views.contactView import ContactView
 
 urlpatterns = [
-    path("", ContactMessage, name="home"),
+    path('', ContactView, {'step': 1}),
+    path('step/<int:step>', ContactView)
 ]
 
 if settings.DEBUG:
