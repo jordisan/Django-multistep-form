@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.urls import path
-from contactForm import views
+from contactForm.views.contactMessage import ContactMessage
 
 urlpatterns = [
-    path("", views.home, name="home"),
+    path("", ContactMessage, name="home"),
 ]
 
 if settings.DEBUG:
