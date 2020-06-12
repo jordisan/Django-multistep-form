@@ -2,9 +2,11 @@ asgiref==3.2.7
 astroid==2.4.1
 Babel==2.8.0
 colorama==0.4.3
+dj-database-url==0.5.0
 Django==3.0.6
 django-appconf==1.0.4
 django-compressor==2.4
+django-heroku==0.3.1
 django-libsass==0.8
 django-phonenumber-field==4.0.0
 gunicorn==20.0.4
@@ -13,6 +15,7 @@ lazy-object-proxy==1.4.3
 libsass==0.20.0
 mccabe==0.6.1
 phonenumberslite==8.12.5
+psycopg2==2.8.5
 pylint==2.5.2
 pytz==2020.1
 rcssmin==1.0.6
@@ -20,4 +23,5 @@ rjsmin==1.1.0
 six==1.14.0
 sqlparse==0.3.1
 toml==0.10.0
+whitenoise==5.1.0
 wrapt==1.12.1
