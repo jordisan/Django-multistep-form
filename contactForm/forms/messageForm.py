@@ -5,7 +5,7 @@ from ..models.contactMessage import ContactMessage
 class MessageForm(forms.ModelForm): 
     class Meta: 
         model = ContactMessage
-        fields = "__all__"
+        exclude = ('customer',) # we will assign it from CustomerForm
         widgets = {
             'message': forms.Textarea(),
         }

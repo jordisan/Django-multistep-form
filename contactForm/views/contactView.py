@@ -24,8 +24,16 @@ def ContactView(request, step=1):
             # save in database
             form = CustomerForm(request.POST)
             if form.is_valid():
-                request.session[SESSIONKEY_DATA_CUSTOMER] = model_to_dict(form.instance)
-                # ToDo: save data (message and custom info)
+                # TODO: check that user is not already on the database
+                form.save() # save customer data
+                form_m = MessageForm(request.session.get(SESSIONKEY_DATA_MESSAGE)) # retrieve message from session
+                form_m.instance.customer = form.instance
+                form_m.save() # save message data
+                request.session.flush() # remove session data
+                return render(request, 'contactForm/feedback.html', {
+                    'page_title': 'Thanks',
+                    'msg': 'Your data has been saved. We will contact you soon.'
+                })
 
         else:
             # store data in session (temporarily) using model_to_dict to make it serializable
