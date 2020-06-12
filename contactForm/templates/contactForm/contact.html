@@ -6,11 +6,26 @@
 {% endblock styles %}
 
 {% block content %}
-<form action="" method="post">
+<form method="post">
     {% csrf_token %}
     {{ form }}
     <div class="form--actions">
-        <input type="submit" value="Submit">
+
+        {% if step > 1 %}
+            <a href="{{ step|add:-1 }}" class="nav--prev">Prev</a>
+        {% endif %}
+     
+
+        <div class="form--actions__main">
+            <a href="/cancel" class="nav--cancel">cancel</a>
+
+            {% if step < step_last %}
+                <button type="submit" class="nav--next">Next</button>
+            {% else %}
+                <button type="submit" class="nav--send">Send</button>
+            {% endif %}
+        </div>
+
     </div>
 </form>
 {% endblock content %}

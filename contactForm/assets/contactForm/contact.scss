@@ -16,6 +16,34 @@ form {
     }
 
     .form--actions {
-        margin-top: 20px;
+        padding: 30px 0;
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav--next,
+        .nav--send {
+            font-weight: bold;
+            margin-left: 20px;
+            text-transform: uppercase;
+        }
+
+        .nav--prev::before {
+            content: '\21E6 ';
+        }
+        .nav--next::after {
+            content: ' \21E8';
+        }
+        .nav--send::after {
+            content: ' \2713';
+        }
+
+
+        &__main {
+            display: block;
+            float: right;
+            text-align: right;
+        }
     }
 }
