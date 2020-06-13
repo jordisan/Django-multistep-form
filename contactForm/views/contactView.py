@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from ..forms.messageForm import MessageForm
 from ..forms.customerForm import CustomerForm
 
+from general.models.customer import Customer
+
 def ContactView(request, step=1):
     ''' View for contact form; step 1 is for message; step 2 is for customer data'''
     
@@ -14,7 +16,7 @@ def ContactView(request, step=1):
     STEP_LAST = 2
 
     form = None
-    if step == 2:
+    if step == STEP_LAST:
         form = CustomerForm()
     else:
         form = MessageForm()
@@ -24,8 +26,10 @@ def ContactView(request, step=1):
             # save in database
             form = CustomerForm(request.POST)
             if form.is_valid():
-                # TODO: check that user is not already on the database
-                form.save() # save customer data
+                # check that user is not already on the database
+                if not Customer.objects.filter(email=form.instance.email).exists() :
+                    form.save() # save customer data if new; TODO: should we update data if customer already exists?
+
                 form_m = MessageForm(request.session.get(SESSIONKEY_DATA_MESSAGE)) # retrieve message from session
                 form_m.instance.customer = form.instance
                 form_m.save() # save message data
@@ -36,15 +40,15 @@ def ContactView(request, step=1):
                 })
 
         else:
-            # store data in session (temporarily) using model_to_dict to make it serializable
+            # not last step => store data in session (temporarily) using model_to_dict to make it serializable
             form = MessageForm(request.POST)
             if form.is_valid():
                 request.session[SESSIONKEY_DATA_MESSAGE] = model_to_dict(form.instance)
                 return redirect('/step/' + str(step + 1))
 
     else:
-        # try to get data from session (if it was previously stored)
-        if step == 2:
+        # try to get data from session (in case it was previously stored)
+        if step == STEP_LAST:
             form =  CustomerForm(request.session.get(SESSIONKEY_DATA_CUSTOMER))    
         else:
             form =  MessageForm(request.session.get(SESSIONKEY_DATA_MESSAGE))    

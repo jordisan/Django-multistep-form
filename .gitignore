@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 static/
+staticfiles/
 
 # C extensions
 *.so
