@@ -7,8 +7,24 @@
 
 {% block content %}
 <form method="post">
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="form--alert alert-danger">
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="form--alert alert-danger">
+                {{ error|escape }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     {% csrf_token %}
     {{ form }}
+    
     <div class="form--actions">
 
         {% if step > 1 %}

@@ -11,51 +11,51 @@ from general.models.customer import Customer
 def ContactView(request, step=1):
     ''' View for contact form; step 1 is for message; step 2 is for customer data'''
     
-    SESSIONKEY_DATA_MESSAGE = 'contact_message'
-    SESSIONKEY_DATA_CUSTOMER = 'contact_customer'
-    STEP_LAST = 2
+    STEPS = {
+        1: {
+            'form': 'MessageForm'
+        },
+        2:  {
+            'form': 'CustomerForm'
+        }
+    }
+    
+    SESSIONKEY_PREFIX = 'contactform_step_'
 
-    form = None
-    if step == STEP_LAST:
-        form = CustomerForm()
-    else:
-        form = MessageForm()
+    form = globals()[STEPS[step]['form']]()
 
     if request.method == 'POST':
-        if step == STEP_LAST:
-            # save in database
-            form = CustomerForm(request.POST)
+        if step == len(STEPS):
+            # last step => save in database
+            form = globals()[STEPS[step]['form']](request.POST)
+            # check that user is not already on the database
             if form.is_valid():
-                # check that user is not already on the database
-                if not Customer.objects.filter(email=form.instance.email).exists() :
+                if not Customer.objects.filter(email=form.instance.email).exists():
                     form.save() # save customer data if new; TODO: should we update data if customer already exists?
-
-                form_m = MessageForm(request.session.get(SESSIONKEY_DATA_MESSAGE)) # retrieve message from session
-                form_m.instance.customer = form.instance
-                form_m.save() # save message data
-                request.session.flush() # remove session data
-                return render(request, 'contactForm/feedback.html', {
-                    'page_title': 'Thanks',
-                    'msg': 'Your data has been saved. We will contact you soon.'
-                })
+                else:
+                    form_m = globals()[STEPS[1]['form']](request.session.get(SESSIONKEY_PREFIX + '1')) # retrieve message (first step) from session
+                    form_m.instance.customer = form.instance
+                    form_m.save() # save message data
+                    request.session.flush() # remove session data
+                    return render(request, 'contactForm/feedback.html', {
+                        'page_title': 'Thanks',
+                        'msg': 'Your data has been saved. We will contact you soon.'
+                    })
 
         else:
             # not last step => store data in session (temporarily) using model_to_dict to make it serializable
-            form = MessageForm(request.POST)
+            form = globals()[STEPS[step]['form']](request.POST)
             if form.is_valid():
-                request.session[SESSIONKEY_DATA_MESSAGE] = model_to_dict(form.instance)
+                request.session[SESSIONKEY_PREFIX + str(step)] = model_to_dict(form.instance)
                 return redirect('/step/' + str(step + 1))
 
     else:
         # try to get data from session (in case it was previously stored)
-        if step == STEP_LAST:
-            form =  CustomerForm(request.session.get(SESSIONKEY_DATA_CUSTOMER))    
-        else:
-            form =  MessageForm(request.session.get(SESSIONKEY_DATA_MESSAGE))    
+        form = globals()[STEPS[step]['form']](request.session.get(SESSIONKEY_PREFIX + str(step)))  
 
     return render(request, 'contactForm/contact.html', {
-        'page_title': 'Contact form (' + str(step) + '/' + str(STEP_LAST) + ')',
+        'page_title': 'Contact form (' + str(step) + '/' + str(len(STEPS)) + ')',
         'form': form,
         'step': step,
-        'step_last': STEP_LAST
+        'step_last': len(STEPS)
     })
