@@ -6,7 +6,7 @@
 {% endblock styles %}
 
 {% block content %}
-<form method="post">
+<form id="contact--form" method="post">
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}
@@ -45,3 +45,12 @@
     </div>
 </form>
 {% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'contactForm/contact.js' %}"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            contactForm.init(document.getElementById('contact--form'));
+        });
+    </script>
+{% endblock scripts %}
