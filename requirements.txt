@@ -9,6 +9,7 @@ django-compressor==2.4
 django-heroku==0.3.1
 django-libsass==0.8
 django-phonenumber-field==4.0.0
+djangorestframework==3.11.0
 gunicorn==20.0.4
 isort==4.3.21
 lazy-object-proxy==1.4.3
