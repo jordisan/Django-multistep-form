@@ -4,7 +4,7 @@ from general.models.customer import Customer
 class CustomerForm(forms.ModelForm):
     class Meta: 
         model = Customer 
-        fields = "__all__"
+        fields = ['email', 'first_name', 'last_name', 'phone_number']
 
     def validate_unique(self):
         '''

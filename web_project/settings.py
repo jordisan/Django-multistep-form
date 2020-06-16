@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'rest_framework',
     'general',
+    'api',
     'contactForm',
 ]
 
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'general.context_processors.custom_settings',
             ],
         },
     },
@@ -143,6 +146,9 @@ STATICFILES_FINDERS = (
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+# URL for REST API
+API_URL = '/api'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals(), test_runner=False)

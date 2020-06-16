@@ -30,17 +30,26 @@ def ContactView(request, step=1):
             form = globals()[STEPS[step]['form']](request.POST)
             # check that user is not already on the database
             if form.is_valid():
-                if not Customer.objects.filter(email=form.instance.email).exists():
-                    form.save() # save customer data if new; TODO: should we update data if customer already exists?
+                existing_customers = Customer.objects.filter(email=form.instance.email)
+                if existing_customers.count() > 0:
+                    # customer already exists => update data
+                    existing_customer = existing_customers[0]
+                    existing_customer.first_name = form.instance.first_name
+                    existing_customer.last_name = form.instance.last_name
+                    existing_customer.phone_number = form.instance.phone_number
+                    form.instance = existing_customer
+                    form.instance.save()
                 else:
-                    form_m = globals()[STEPS[1]['form']](request.session.get(SESSIONKEY_PREFIX + '1')) # retrieve message (first step) from session
-                    form_m.instance.customer = form.instance
-                    form_m.save() # save message data
-                    request.session.flush() # remove session data
-                    return render(request, 'contactForm/feedback.html', {
-                        'page_title': 'Thanks',
-                        'msg': 'Your data has been saved. We will contact you soon.'
-                    })
+                    form.save() # save new customer
+
+                form_m = globals()[STEPS[1]['form']](request.session.get(SESSIONKEY_PREFIX + '1')) # retrieve message (first step) from session
+                form_m.instance.customer = form.instance
+                form_m.save() # save message data
+                request.session.flush() # remove session data
+                return render(request, 'contactForm/feedback.html', {
+                    'page_title': 'Thanks',
+                    'msg': 'Your data has been saved. We will contact you soon.'
+                })
 
         else:
             # not last step => store data in session (temporarily) using model_to_dict to make it serializable
