@@ -10,6 +10,8 @@
 
 * Contact form project at [/contactForm](./contactForm)
 
+* REST api using Django Rest framework at [/api](./api); calls to get customer data using Vanilla JS
+
 ## Devops
 
 * Includes some tests for models and forms
@@ -17,3 +19,4 @@
 * CI workflow (action) in GitHub: build, tests
 
 * Automatically deployed at https://django-demo-jordisan.herokuapp.com/
+
