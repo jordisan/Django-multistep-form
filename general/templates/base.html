@@ -28,6 +28,15 @@
         <p>Placeholder text in base template. Replace with page content.</p>
         {% endblock content %}
         
+        <!-- load global JS -->
+        <script type="text/javascript" src="{% static 'general.js' %}"></script>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function(event) { 
+                // initialize JS API
+                general.API.init('{{API_URL}}');
+            });
+        </script>
+
         {% block scripts %}
         <!-- particular scripts for applications -->
         {% endblock scripts %}

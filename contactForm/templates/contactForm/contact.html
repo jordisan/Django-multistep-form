@@ -50,7 +50,8 @@
     <script type="text/javascript" src="{% static 'contactForm/contact.js' %}"></script>
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function(event) { 
-            contactForm.init(document.getElementById('contact--form'));
+            // initialize JS for contact form passing container as parameter
+            general.ContactForm.init(document.getElementById('contact--form'));
         });
     </script>
 {% endblock scripts %}
