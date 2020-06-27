@@ -1,11 +1,11 @@
 from django.conf import settings
 from django.urls import path
-from contactForm.views.contactView import ContactView
-from contactForm.views.cancelView import CancelView
+from multistepform.views.formView import FormView
+from multistepform.views.cancelView import CancelView
 
 urlpatterns = [
-    path('', ContactView, {'step': 1}),
-    path('step/<int:step>', ContactView),
+    path('', FormView, {'step': 1}),
+    path('step/<int:step>', FormView),
     path('cancel', CancelView),
 ]
 

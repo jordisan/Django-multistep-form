@@ -5,7 +5,7 @@
 * Multiple steps form; stores temporary data in sessions
 * Automatically generated forms from models
 * Global resources (for different projects) at [/general](./general): models, styles, ...
-* Contact form project at [/contactForm](./contactForm)
+* Multistep form project at [/multistepform](./multistepform)
 * REST api using Django Rest framework at [/api](./api); calls to get customer data using Vanilla JS
 
 ## Devops

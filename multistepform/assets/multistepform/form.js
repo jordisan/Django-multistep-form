@@ -1,8 +1,8 @@
 // global namespace
 var general = general || {};
 
-// module for contact form
-general.ContactForm = (function(){
+// module for multip-step form
+general.Multistepform = (function(){
     'use strict';
 
     var _container = null;
@@ -23,7 +23,7 @@ general.ContactForm = (function(){
     }
 
     /**
-     * Initialize contact form
+     * Initialize form
      * @param {*} container 
      */
     function _init(container) {

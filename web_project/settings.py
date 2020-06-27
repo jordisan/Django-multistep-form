@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'general',
     'api',
-    'contactForm',
+    'multistepform',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +62,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'general/templates'),
-            os.path.join(BASE_DIR, 'contactForm/templates')
+            os.path.join(BASE_DIR, 'multistepform/templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -133,7 +133,7 @@ STATIC_ROOT = 'static'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'general/assets'),
-    os.path.join(BASE_DIR, 'contactForm/assets'),
+    os.path.join(BASE_DIR, 'multistepform/assets'),
 ]
 
 STATICFILES_FINDERS = (

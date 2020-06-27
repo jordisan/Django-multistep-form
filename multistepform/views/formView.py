@@ -8,8 +8,8 @@ from ..forms.customerForm import CustomerForm
 
 from general.models.customer import Customer
 
-def ContactView(request, step=1):
-    ''' View for contact form; step 1 is for message; step 2 is for customer data'''
+def FormView(request, step=1):
+    ''' View for multiple steps form '''
     
     STEPS = {
         1: {
@@ -20,7 +20,7 @@ def ContactView(request, step=1):
         }
     }
     
-    SESSIONKEY_PREFIX = 'contactform_step_'
+    SESSIONKEY_PREFIX = 'multistepform_step_'
 
     form = globals()[STEPS[step]['form']]()
 
@@ -46,7 +46,7 @@ def ContactView(request, step=1):
                 form_m.instance.customer = form.instance
                 form_m.save() # save message data
                 request.session.flush() # remove session data
-                return render(request, 'contactForm/feedback.html', {
+                return render(request, 'multistepform/feedback.html', {
                     'page_title': 'Thanks',
                     'msg': 'Your data has been saved. We will contact you soon.'
                 })
@@ -62,8 +62,8 @@ def ContactView(request, step=1):
         # try to get data from session (in case it was previously stored)
         form = globals()[STEPS[step]['form']](request.session.get(SESSIONKEY_PREFIX + str(step)))  
 
-    return render(request, 'contactForm/contact.html', {
-        'page_title': 'Contact form (' + str(step) + '/' + str(len(STEPS)) + ')',
+    return render(request, 'multistepform/form.html', {
+        'page_title': 'Multiple steps form (' + str(step) + '/' + str(len(STEPS)) + ')',
         'form': form,
         'step': step,
         'step_last': len(STEPS)

@@ -1,12 +1,12 @@
 from django.test import TestCase
 from django.db.utils import IntegrityError
-from .models.contactMessage import ContactMessage
+from .models.formMessage import FormMessage
 
 class TestModels(TestCase):
     def test_no_empty_customer(self):
         ''' Make sure there can't be a message without customer '''
 
-        message = ContactMessage(
+        message = FormMessage(
             subject = 'test subject',
             message = 'test message'
         )
