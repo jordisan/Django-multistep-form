@@ -26,7 +26,6 @@ main {
         position: absolute;
         z-index: -1;   
     }
-
 }
 
 form {
@@ -88,5 +87,14 @@ form {
             float: right;
             text-align: right;
         }
+    }
+}
+
+nav {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    a {
+        text-decoration: none;
     }
 }

@@ -7,7 +7,7 @@ def CancelView(request):
     request.session.flush()
     return render(request, 'multistepform/feedback.html', {
         'page_title': 'Cancelled',
-        'msg': 'Your data has been removed. Thanks.'
+        'msg': 'All your data has been removed. Thanks.'
     })
 
  
