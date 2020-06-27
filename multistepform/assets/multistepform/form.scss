@@ -2,7 +2,7 @@
 
 html {
     background-color: #999;
-    padding: 20px;
+    padding: 40px 20px;
 }
 body {
     background-color: #fff;
@@ -14,7 +14,15 @@ body {
 form {
     label {
         display: block;
-        margin-top: 10px;
+        margin-top: 15px;
+    
+        &.required::after {
+            content: '\2732';
+            color: #dd3333;
+            vertical-align: super;
+            font-size: 75%;
+            padding-left: 5px;
+        }
     }
 
     .form--actions {

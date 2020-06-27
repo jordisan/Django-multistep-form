@@ -7,6 +7,7 @@
 
 {% block content %}
 <form id="multiple--form" method="post">
+    <!-- errors -->
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}
@@ -23,7 +24,12 @@
     {% endif %}
 
     {% csrf_token %}
-    {{ form }}
+
+    <!-- fields -->
+    {% for field in form %}
+        <label class="{% if field.field.required %}required{% endif %}" for="{{ field.auto_id }}">{{ field.label }}</label>
+        {{ field }}
+    {% endfor %}
     
     <div class="form--actions">
 
