@@ -1,4 +1,4 @@
-# Django demo app: CONTACT FORM (see it live at https://django-demo-jordisan.herokuapp.com/)
+# Django Multistep Form (see it live at https://django-multistep-form.herokuapp.com/)
 
 ## Code
 
