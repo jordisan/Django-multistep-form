@@ -7,8 +7,7 @@ class TestModels(TestCase):
         ''' Make sure there can't be a message without customer '''
 
         message = FormMessage(
-            subject = 'test subject',
-            message = 'test message'
+            additional_message = 'test message'
         )
         with self.assertRaises(IntegrityError):
             message.save()
