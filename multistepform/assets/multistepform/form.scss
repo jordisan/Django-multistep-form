@@ -1,10 +1,13 @@
 // styles only for form
 
+@import '../../../general/assets/general.scss';
+
 html {
-    background-color: #999;
+    background-color: #ccc;
     padding: 40px 20px;
 }
-body {
+
+main {
     background-color: #fff;
     padding: 20px;
     margin: 0 auto;
@@ -36,7 +39,11 @@ form {
     }
 
     .form--actions {
-        padding: 30px 0;
+        @extend .clear;
+
+        margin: 50px 0 0 0;
+        padding: 30px 0 20px;
+        border-top: solid 1px #ccc;
 
         a {
             text-decoration: none;
@@ -61,6 +68,7 @@ form {
 
 
         &__main {
+            /* main form actions right floated */
             display: block;
             float: right;
             text-align: right;

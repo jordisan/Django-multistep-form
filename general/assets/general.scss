@@ -1,0 +1,22 @@
+// global styles (for all applications)
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.clear::before,
+.clear::after {
+    clear: both;
+    content: "";
+    display: table;
+}
