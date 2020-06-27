@@ -7,5 +7,5 @@ class MessageForm(forms.ModelForm):
         model = FormMessage
         exclude = ('customer',) # we will assign it from CustomerForm
         widgets = {
-            'message': forms.Textarea(),
+            'additional_message': forms.Textarea(),
         }

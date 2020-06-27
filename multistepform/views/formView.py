@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 
 from ..forms.messageForm import MessageForm
 from ..forms.customerForm import CustomerForm
+from ..forms.surveyForm import SurveyForm
 
 from general.models.customer import Customer
 
@@ -13,20 +14,24 @@ def FormView(request, step=1):
     
     STEPS = {
         1: {
+            'form': 'SurveyForm'
+        },
+        2: {
             'form': 'MessageForm'
         },
-        2:  {
+        3:  {
             'form': 'CustomerForm'
         }
     }
     
     SESSIONKEY_PREFIX = 'multistepform_step_'
 
-    form = globals()[STEPS[step]['form']]()
+    form = globals()[STEPS[step]['form']]() # default form for current step
 
     if request.method == 'POST':
         if step == len(STEPS):
             # last step => save in database
+
             form = globals()[STEPS[step]['form']](request.POST)
             # check that user is not already on the database
             if form.is_valid():
@@ -42,9 +47,12 @@ def FormView(request, step=1):
                 else:
                     form.save() # save new customer
 
-                form_m = globals()[STEPS[1]['form']](request.session.get(SESSIONKEY_PREFIX + '1')) # retrieve message (first step) from session
-                form_m.instance.customer = form.instance
-                form_m.save() # save message data
+                # retrieve previous forms (stored in session) and save them
+                for i in range(1, len(STEPS)):
+                    form_stored = globals()[STEPS[i]['form']](request.session.get(SESSIONKEY_PREFIX + str(i)))
+                    form_stored.instance.customer = form.instance # set saved customer in related entities
+                    form_stored.save()
+
                 request.session.flush() # remove session data
                 return render(request, 'multistepform/feedback.html', {
                     'page_title': 'Thanks',
@@ -53,13 +61,14 @@ def FormView(request, step=1):
 
         else:
             # not last step => store data in session (temporarily) using model_to_dict to make it serializable
+
             form = globals()[STEPS[step]['form']](request.POST)
             if form.is_valid():
                 request.session[SESSIONKEY_PREFIX + str(step)] = model_to_dict(form.instance)
                 return redirect('/step/' + str(step + 1))
 
     else:
-        # try to get data from session (in case it was previously stored)
+        # GET => try to get data from session (in case it was previously stored)
         form = globals()[STEPS[step]['form']](request.session.get(SESSIONKEY_PREFIX + str(step)))  
 
     return render(request, 'multistepform/form.html', {

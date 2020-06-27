@@ -12,16 +12,26 @@ body {
 }
 
 form {
-    label {
+    & > label {
         display: block;
-        margin-top: 15px;
+        margin-top: 30px;
     
         &.required::after {
             content: '\2732';
             color: #dd3333;
             vertical-align: super;
-            font-size: 75%;
+            font-size: .7rem;
             padding-left: 5px;
+        }
+    }
+
+    ul, ol {
+        /* used in radio buttons */
+        padding-left: 1.0rem;
+        font-size: .9rem;
+
+        li {
+            list-style-type: none;
         }
     }
 
