@@ -11,6 +11,7 @@ This is an example of a Django application implementing a form splitted through 
 ## Details
 
 * Temporary data are stored in session and stored to database in last step
+* Root url redirects to first non-filled step
 * Forms are automatically generated from models
 
 ### Devops
@@ -21,6 +22,8 @@ This is an example of a Django application implementing a form splitted through 
 
 ## (I'd like) To-do
 
+* Add info/placeholders for some fields
+* Last step showing all data before submitting
 * Multilanguage
 * Use TypeScript
 * Some more tests

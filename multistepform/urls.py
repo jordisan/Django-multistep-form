@@ -4,7 +4,7 @@ from multistepform.views.formView import FormView
 from multistepform.views.cancelView import CancelView
 
 urlpatterns = [
-    path('', FormView, {'step': 1}),
+    path('', FormView, {'step': None}),
     path('step/<int:step>', FormView),
     path('cancel', CancelView),
 ]
