@@ -18,6 +18,7 @@ main {
         content: "";
         background: url('form-bg.jpg');
         background-size: cover;
+        background-position: right top;
         opacity: 0.5;
         top: 0;
         left: 0;
@@ -70,13 +71,20 @@ form {
             text-decoration: none;
         }
 
+        .nav--prev,
         .nav--next,
         .nav--send {
-            font-weight: bold;
-            margin-left: 20px;
             text-transform: uppercase;
             padding: 10px;
+            display: inline-block;
+        }
+
+        .nav--next,
+        .nav--send {
             border-radius: 5px;
+            margin-left: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         .nav--prev::before {
@@ -105,5 +113,23 @@ nav {
 
     a {
         text-decoration: none;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        padding: 10px 5px;
+    }
+
+    input:not([type="checkbox"]):not([type="radio"]), 
+    textarea,
+    select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    main {
+        padding: 5px;
+        background-color: #fff;
     }
 }
