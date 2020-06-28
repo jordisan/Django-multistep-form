@@ -1,6 +1,22 @@
 // global styles (for all applications)
 body {
     font-family: 'Raleway', sans-serif;
+    position: relative;
+
+    &.loading {
+        /* show overlay to block UI while waiting for AJAX responses */
+        opacity: .5;        
+        &.loading::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            cursor: wait;
+            background-color: transparent;
+        }
+    }
 }
 
 p {

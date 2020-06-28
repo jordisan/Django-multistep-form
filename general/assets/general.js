@@ -12,6 +12,7 @@ general.API = (function(){
      * @param {string} path 
      */
     function _getJson(path) {
+        document.getElementsByTagName('body')[0].classList.add('loading')
         return fetch(_api_url + '/' + path)
             .then(function(response) {
                 if (response.ok) {
@@ -24,6 +25,9 @@ general.API = (function(){
             .catch(function(err) {
                 console.log(err);
                 return Promise.reject();
+            })
+            .finally(function() {
+                document.getElementsByTagName("body")[0].classList.remove('loading')
             })
     }
 
