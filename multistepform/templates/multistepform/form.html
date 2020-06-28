@@ -29,6 +29,9 @@
     {% for field in form %}
         <label class="{% if field.field.required %}required{% endif %}" for="{{ field.auto_id }}">{{ field.label }}</label>
         {{ field }}
+        {% if field.help_text %}
+        <span class="field--helptext">{{ field.help_text }}</span>
+        {% endif %}
     {% endfor %}
     
     <div class="form--actions">

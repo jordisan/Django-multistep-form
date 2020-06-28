@@ -5,6 +5,9 @@ class CustomerForm(forms.ModelForm):
     class Meta: 
         model = Customer 
         fields = ['email', 'first_name', 'last_name', 'phone_number']
+        help_texts = {
+            'email': 'if email already exists, stored data will be retrieved',
+        }
 
     def validate_unique(self):
         '''
