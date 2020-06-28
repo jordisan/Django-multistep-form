@@ -18,7 +18,7 @@ This is an example of a Django application (my first experiment) implementing a 
 
 ### Devops
 
-* Includes some tests for [models](/general/test_models.py), [forms](/multistepform/test_forms.py), API, ...
+* Includes some tests for [models](/general/test_models.py), [forms](/multistepform/test_forms.py), [API](/api/test_api.py), ...
 * [CI workflow (action) in GitHub](../../actions?query=workflow%3A%22Django+CI%22): build, tests
 * Automatically [deployed to Heroku](https://django-multistep-form.herokuapp.com/)
 
