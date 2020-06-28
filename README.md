@@ -5,7 +5,7 @@ This is an example of a Django application (my first experiment) implementing a 
 ## Code
 
 * Global resources (for different projects) at [/general](./general): models, styles, ...
-* Multistep form project at [/multistepform](/multistepform)
+* Multistep form project at [/multistepform](/multistepform); most of the multistep logic implemented in [formView.py](/multistepform/views/formView.py)
 * REST api (using Django Rest framework) at [/api](./api); live api [deployed at Heroku](https://django-multistep-form.herokuapp.com/api/)
 * Calls to get customer data using Vanilla JS: [JS module](general/assets/general.js) and [usage](/multistepform/assets/multistepform/form.js)
 * Compile CSS using SASS [global styles](/general/assets/general.scss) and [form styles](/multistepform/assets/multistepform/form.scss)
