@@ -29,3 +29,6 @@ This is an example of a Django application implementing a form splitted through 
 * Multilanguage
 * Use TypeScript
 * Some more tests
+
+
+![Screenshots](./multistep-form.png)
