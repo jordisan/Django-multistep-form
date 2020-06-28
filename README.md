@@ -1,6 +1,6 @@
 # Django multiple-steps form<br/><br/>live at https://django-multistep-form.herokuapp.com/
 
-This is an example of a Django application implementing a form splitted through multiple screens
+This is an example of a Django application (my first experiment) implementing a form splitted through multiple screens
 
 ## Code
 
@@ -29,3 +29,6 @@ This is an example of a Django application implementing a form splitted through 
 * Multilanguage
 * Use TypeScript
 * Some more tests
+
+
+![Screenshots](./multistep-form.png)
