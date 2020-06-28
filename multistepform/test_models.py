@@ -9,5 +9,5 @@ class TestModels(TestCase):
         message = FormMessage(
             additional_message = 'test message'
         )
-        with self.assertRaises(IntegrityError):
+        with self.assertRaises(IntegrityError, msg='message without customer should not be allowed'):
             message.save()

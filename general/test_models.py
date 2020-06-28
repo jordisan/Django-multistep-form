@@ -9,5 +9,5 @@ class TestModels(TestCase):
         customer1 = Customer(email='test@email.com')
         customer1.save()
         customer2 = Customer(email='test@email.com')
-        with self.assertRaises(IntegrityError):
+        with self.assertRaises(IntegrityError, msg='allows duplicated emails'):
             customer2.save()
